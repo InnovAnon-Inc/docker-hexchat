@@ -32,7 +32,7 @@ docker volume create  hexchatvol
 docker run --rm --name docker-hexchat      \
 	--net=host -e DISPLAY=${DISPLAY}  \
 	-v /tmp/.X11-unix/:/tmp/.X11-unix \
-	-v hexchatvol:/root                \
+	-v hexchatvol:/home/signal-user    \
 	-e XAUTHORITY                     \
 	-v $XAUTHORITY:$XAUTHORITY        \
 	-t docker-hexchat

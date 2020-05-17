@@ -13,3 +13,5 @@ WORKDIR /home/signal-user
 #CMD        ["/usr/bin/env", "hexchat"]
 ENTRYPOINT ["/usr/bin/env", "hexchat"]
 
+#USER root
+#ENTRYPOINT chown -R signal-user:signal-user .*
