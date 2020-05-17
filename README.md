@@ -1,0 +1,2 @@
+# docker-hexchat
+Dockerized HexChat
