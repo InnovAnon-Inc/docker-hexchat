@@ -1,4 +1,5 @@
 FROM poobuntu:latest
+MAINTAINER Innovations Anonymous <InnovAnon-Inc@protonmail.com>
 
 RUN apt-fast install -y hexchat
 
@@ -9,6 +10,6 @@ RUN useradd -ms /bin/bash signal-user
 USER signal-user
 WORKDIR /home/signal-user
 
-CMD        ["/usr/bin/env", "hexchat"]
+#CMD        ["/usr/bin/env", "hexchat"]
 ENTRYPOINT ["/usr/bin/env", "hexchat"]
 
