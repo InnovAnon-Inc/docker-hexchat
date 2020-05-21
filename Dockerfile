@@ -12,7 +12,7 @@ LABEL org.label-schema.vcs-ref=$VCS_REF
 LABEL org.label-schema.vcs-type="Git"
 LABEL org.label-schema.vcs-url="https://github.com/InnovAnon-Inc/docker-hexchat"
 
-RUN apt-fast install -qy hexchat
+RUN apt-fast install hexchat
 
 RUN ./poobuntu-clean.sh
 RUN rm -v poobuntu-clean.sh
