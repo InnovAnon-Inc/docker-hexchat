@@ -15,7 +15,6 @@ LABEL org.label-schema.vcs-url="https://github.com/InnovAnon-Inc/docker-hexchat"
 RUN apt-fast install hexchat
 
 RUN ./poobuntu-clean.sh
-RUN rm -v poobuntu-clean.sh
 
 RUN useradd -ms /bin/bash signal-user
 USER signal-user
