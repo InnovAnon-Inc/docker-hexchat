@@ -14,11 +14,11 @@ docker version ||
 dockerd &
 
 sudo             -- \
-nice -n -20      -- \
+nice -n +20      -- \
 sudo -u `whoami` -- \
-docker build -t docker-hexchat .
+docker build -t innovanon/docker-hexchat .
 
-docker push innovanon/docker-hexchat:latest
+docker push innovanon/docker-hexchat:latest || :
 
 docker volume inspect hexchatvol ||
 docker volume create  hexchatvol
@@ -31,11 +31,14 @@ docker volume create  hexchatvol
 #	-v $XAUTHORITY:$XAUTHORITY        \
 #	-t docker-hexchat
 
+sudo             -- \
+nice -n -20      -- \
+sudo -u `whoami` -- \
 docker run --rm --name docker-hexchat      \
 	--net=host -e DISPLAY=${DISPLAY}  \
 	-v /tmp/.X11-unix/:/tmp/.X11-unix \
 	-v hexchatvol:/home/signal-user    \
 	-e XAUTHORITY                     \
 	-v $XAUTHORITY:$XAUTHORITY        \
-	-t docker-hexchat
+	-t innovanon/docker-hexchat
 
