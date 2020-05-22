@@ -12,11 +12,9 @@ LABEL org.label-schema.vcs-ref=$VCS_REF
 LABEL org.label-schema.vcs-type="Git"
 LABEL org.label-schema.vcs-url="https://github.com/InnovAnon-Inc/docker-hexchat"
 
-RUN apt-fast install hexchat
-
-RUN ./poobuntu-clean.sh
-
-RUN useradd -ms /bin/bash signal-user
+RUN apt-fast install hexchat \
+ && ./poobuntu-clean.sh      \
+ && useradd -ms /bin/bash signal-user
 USER signal-user
 WORKDIR /home/signal-user
 
