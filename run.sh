@@ -18,6 +18,8 @@ nice -n -20      -- \
 sudo -u `whoami` -- \
 docker build -t docker-hexchat .
 
+docker push innovanon/docker-hexchat:latest
+
 docker volume inspect hexchatvol ||
 docker volume create  hexchatvol
 
@@ -36,3 +38,4 @@ docker run --rm --name docker-hexchat      \
 	-e XAUTHORITY                     \
 	-v $XAUTHORITY:$XAUTHORITY        \
 	-t docker-hexchat
+
