@@ -1,16 +1,16 @@
 FROM innovanon/poobuntu:latest
 MAINTAINER Innovations Anonymous <InnovAnon-Inc@protonmail.com>
 
-LABEL version="1.0"
-LABEL maintainer="Innovations Anonymous <InnovAnon-Inc@protonmail.com>"
-LABEL about="dockerized hexchat"
-LABEL org.label-schema.build-date=$BUILD_DATE
-LABEL org.label-schema.license="PDL (Public Domain License)"
-LABEL org.label-schema.name="docker-hexchat"
-LABEL org.label-schema.url="InnovAnon-Inc.github.io/docker-hexchat"
-LABEL org.label-schema.vcs-ref=$VCS_REF
-LABEL org.label-schema.vcs-type="Git"
-LABEL org.label-schema.vcs-url="https://github.com/InnovAnon-Inc/docker-hexchat"
+LABEL version="1.0"                                                     \
+      maintainer="Innovations Anonymous <InnovAnon-Inc@protonmail.com>" \
+      about="dockerized hexchat"                                        \
+      org.label-schema.build-date=$BUILD_DATE                           \
+      org.label-schema.license="PDL (Public Domain License)"            \
+      org.label-schema.name="docker-hexchat"                            \
+      org.label-schema.url="InnovAnon-Inc.github.io/docker-hexchat"     \
+      org.label-schema.vcs-ref=$VCS_REF                                 \
+      org.label-schema.vcs-type="Git"                                   \
+      org.label-schema.vcs-url="https://github.com/InnovAnon-Inc/docker-hexchat"
 
 RUN apt-fast install hexchat \
  && ./poobuntu-clean.sh      \
