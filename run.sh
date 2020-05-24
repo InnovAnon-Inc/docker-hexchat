@@ -32,7 +32,7 @@ docker volume create  hexchatvol
 #	-t docker-hexchat
 
 sudo             -- \
-nice -n -20      -- \
+nice -n +20      -- \
 sudo -u `whoami` -- \
 docker run --rm --name docker-hexchat      \
 	--net=host -e DISPLAY=${DISPLAY}  \
