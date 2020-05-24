@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 services:
   hexchat:
     build: .
@@ -17,6 +17,8 @@ services:
       - XAUTHORITY
     devices:
       - "/dev/snd"
+    image: innovanon/docker-hexchat:latest
+    container_name: innovanon/docker-hexchat
 
 volumes:
   hexchatvol:
