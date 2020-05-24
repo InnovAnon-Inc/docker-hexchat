@@ -1,44 +1,20 @@
 #! /bin/bash
 set -exu
+[[ $# -eq 0 ]]
+cd "`dirname "$(readlink -f "$0")"`"
 
-if ! command -v dockerd ; then
-	command -v wget ||
-	apt install wget
-	wget -nc https://download.docker.com/linux/static/stable/x86_64/docker-19.03.8.tgz
-	[ -d docker-19.03.8 ] ||
-	tar xf docker-19.03.8.tgz
-	install docker/* /usr/local/bin/
-fi
+#sudo             -- \
+#nice -n +20      -- \
+#sudo -u `whoami` -- \
+#docker-compose build
 
-docker version ||
-dockerd &
+trap 'docker-compose down' 0
 
+xhost +local:`whoami`
 sudo             -- \
 nice -n +20      -- \
 sudo -u `whoami` -- \
-docker build -t innovanon/docker-hexchat .
+docker-compose up --force-recreate --build
 
 docker push innovanon/docker-hexchat:latest || :
-
-docker volume inspect hexchatvol ||
-docker volume create  hexchatvol
-
-#docker run --rm --name docker-hexchat      \
-#	--net=host -e DISPLAY=${DISPLAY}  \
-#	-v /tmp/.X11-unix/:/tmp/.X11-unix \
-#	-v hexchatvol:/home/hexchat-user    \
-#	-e XAUTHORITY                     \
-#	-v $XAUTHORITY:$XAUTHORITY        \
-#	-t docker-hexchat
-
-sudo             -- \
-nice -n +20      -- \
-sudo -u `whoami` -- \
-docker run --rm --name docker-hexchat      \
-	--net=host -e DISPLAY=${DISPLAY}  \
-	-v /tmp/.X11-unix/:/tmp/.X11-unix \
-	-v hexchatvol:/home/signal-user    \
-	-e XAUTHORITY                     \
-	-v $XAUTHORITY:$XAUTHORITY        \
-	-t innovanon/docker-hexchat
 

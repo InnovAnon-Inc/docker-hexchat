@@ -1,0 +1,23 @@
+version: '3'
+services:
+  hexchat:
+    build: .
+    #build:
+    #  context: .
+    hostname: hexchat
+    #restart: unless-stopped
+    volumes:
+      - hexchatvol:/home/signal-user
+      - $XAUTHORITY:$XAUTHORITY
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw 
+      - /etc/localtime:/etc/localtime:rw
+    privileged: true
+    environment:
+      - DISPLAY=${DISPLAY}
+      - XAUTHORITY
+    devices:
+      - "/dev/snd"
+
+volumes:
+  hexchatvol:
+
