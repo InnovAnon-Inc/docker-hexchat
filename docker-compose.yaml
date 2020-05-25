@@ -18,7 +18,7 @@ services:
     devices:
       - "/dev/snd"
     image: innovanon/docker-hexchat:latest
-    container_name: innovanon/docker-hexchat
+    container_name: docker-hexchat
 
 volumes:
   hexchatvol:
