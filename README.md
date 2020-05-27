@@ -1,5 +1,5 @@
 # docker-hexchat
-=====
+==========
 
 ![Docker](https://github.com/InnovAnon-Inc/docker-hexchat/workflows/Docker/badge.svg)
 
