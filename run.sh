@@ -3,7 +3,7 @@ set -exu
 (( ! $# ))
 cd "`dirname "$(readlink -f "$0")"`"
 
-./inspircd.sh
+#./inspircd.sh
 
 command -v docker ||
 curl https://raw.githubusercontent.com/InnovAnon-Inc/repo/master/get-docker.sh | bash

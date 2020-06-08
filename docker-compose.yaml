@@ -20,6 +20,16 @@ services:
     image: innovanon/docker-hexchat:latest
     container_name: docker-hexchat
 
+  inspircd-docker:
+    #build: https://github.com/inspircd/inspircd.git
+    image: inspircd/inspircd-docker
+    #command: --redis-host redis
+    links:
+      - "hexchat:hexchat"
+    ports:
+      - 6697
+
+
 volumes:
   hexchatvol:
 
