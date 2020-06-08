@@ -2,8 +2,8 @@
 set -euxo pipefail
 (( ! $# ))
 
-[[ -d    .local/share ]] ||
-mkdir -v .local/share
+[[ -d     .local/share ]] ||
+mkdir -pv .local/share
 
 hexchat
 

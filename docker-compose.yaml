@@ -1,9 +1,9 @@
 version: '3.3'
 services:
   hexchat:
-    build: .
-    #build:
-    #  context: .
+    #build: .
+    build:
+      context: hc
     hostname: hexchat
     #restart: unless-stopped
     volumes:
@@ -11,6 +11,7 @@ services:
       - $XAUTHORITY:$XAUTHORITY
       - /tmp/.X11-unix:/tmp/.X11-unix:rw 
       - /etc/localtime:/etc/localtime:rw
+      - ./hc/Downloads:/home/signal-user/Downloads/:rw
     privileged: true
     environment:
       - DISPLAY=${DISPLAY}
@@ -28,10 +29,26 @@ services:
     #command: --redis-host redis
     links:
       - "hexchat:hexchat"
+      - "iroffer:iroffer"
     ports:
       - "6697:6697"
     restart: unless-stopped
 
+  iroffer:
+    image: innovanon/iroffer:latest
+    container_name: iroffer
+    build:
+      context: iroffer
+      #dockerfile: Dockerfile-iroffer
+    hostname: iroffer
+    restart: unless-stopped
+    volumes:
+      - ./iroffer/downloads:/home/signal-user/downloads/:rw
+      - ./iroffer/uploads:/home/signal-user/uploads/:rw
+      #- ./cron.log:/var/log/cron.log:rw
+      - cronlog:/var/log:rw
+
 volumes:
   hexchatvol:
+  cronlog:
 
