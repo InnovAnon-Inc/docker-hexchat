@@ -23,11 +23,14 @@ services:
   inspircd-docker:
     #build: https://github.com/inspircd/inspircd.git
     image: inspircd/inspircd-docker
+    container_name: inspircd-docker
+    hostname: inspircd
     #command: --redis-host redis
     links:
       - "hexchat:hexchat"
     ports:
       - "6697:6697"
+    restart: unless-stopped
 
 volumes:
   hexchatvol:
