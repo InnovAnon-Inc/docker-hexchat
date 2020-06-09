@@ -7,6 +7,7 @@ set -euxo pipefail
 #    --exec $(which cron)
 #cron -f
 touch   /var/log/cron.log
-cron
+#exec start-stop-daemon --start --exec $(which cron) -- \
+	cron -n -L "${LOGLEVEL:-4}"
 tail -f /var/log/cron.log
 

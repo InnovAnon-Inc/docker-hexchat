@@ -1,10 +1,10 @@
 version: '3.3'
 services:
-  hexchat:
+  docker-hexchat:
     #build: .
     build:
       context: hc
-    hostname: hexchat
+    hostname: docker-hexchat
     #restart: unless-stopped
     volumes:
       - hexchatvol:/home/signal-user
@@ -20,16 +20,18 @@ services:
       - "/dev/snd"
     image: innovanon/docker-hexchat:latest
     container_name: docker-hexchat
+    links:
+      - "inspircd-docker:inspircd-docker"
 
   inspircd-docker:
     #build: https://github.com/inspircd/inspircd.git
-    image: inspircd/inspircd-docker
+    image: inspircd/inspircd-docker:latest
     container_name: inspircd-docker
-    hostname: inspircd
+    hostname: inspircd-docker
     #command: --redis-host redis
-    links:
-      - "hexchat:hexchat"
-      - "iroffer:iroffer"
+    #links:
+    #  - "hexchat:hexchat"
+    #  - "iroffer:iroffer"
     ports:
       - "6697:6697"
     restart: unless-stopped
@@ -45,8 +47,39 @@ services:
     volumes:
       - ./iroffer/downloads:/home/signal-user/downloads/:rw
       - ./iroffer/uploads:/home/signal-user/uploads/:rw
-      #- ./cron.log:/var/log/cron.log:rw
+        #- ./cron.log:/var/log/cron.log:rw
       - cronlog:/var/log:rw
+    links:
+      - "inspircd-docker:inspircd-docker"
+
+# TODO needs stunnel
+#  rss2irc:
+#    image: innovanon/rss2irc:latest
+#    container_name: rss2irc
+#    build:
+#      context: rss2irc
+#    environment:
+#      - FEEDURL=https://innovanon-inc.github.io/feed.xml
+#      - PORT=6697
+#      - CHANNEL=#InnovAnon
+#      - NICK=rss2irc
+#      - OPTIONS=--ident=InnovAnon-Inc --link
+#      - DELAY=10
+#    hostname: rss2irc
+#    restart: unless-stopped
+#    links:
+#      - "inspircd-docker:inspircd-docker"
+
+  shbot:
+    image: innovanon/shbot:latest
+    container_name: shbot
+    build:
+      context: shbot
+    #environment:
+    hostname: shbot
+    restart: unless-stopped
+    links:
+      - "inspircd-docker:inspircd-docker"
 
 volumes:
   hexchatvol:

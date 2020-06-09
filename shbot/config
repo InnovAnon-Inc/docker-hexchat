@@ -1,0 +1,21 @@
+# The bot's nick
+$nick="shbot";
+
+# The IRC server
+$server="irc.freenode.net";
+
+# The owner's nick. Evalbot will flood this nick with private messages.
+$owner="InnovAnon-Inc";
+
+# The passwords for !raw
+$password="";
+
+# The password for nickserv (if registered)
+$nickserv="";
+
+# The channels to join
+@channels=("#InnovAnon");
+
+# Just leave this
+true;
+
